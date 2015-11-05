@@ -11,7 +11,9 @@
 #ifdef __linux__
 #define PREFIX_SIZE sizeof(size_t)
 size_t malloc_size(void *ptr) {
-	return (size_t) *((size_t*)(ptr - PREFIX_SIZE));
+	size_t size = (size_t) *((size_t*)(ptr - PREFIX_SIZE));
+	if(size & ( sizeof(long) -1 )) size += sizeof(long) - size &  (sizeof(long) - 1);
+	return size;
 }
 #endif
 
