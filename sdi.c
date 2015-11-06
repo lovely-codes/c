@@ -18,6 +18,8 @@ ilist newilit(int l) {
 }
 
 int ilist_len(ilist p){
+
+	//取回结构体的指针，需先将数据的指针转成void*类型，否则出现错误
 	struct sdi *m = (void*) p - sizeof(struct sdi);
 	return m->len;
 }
